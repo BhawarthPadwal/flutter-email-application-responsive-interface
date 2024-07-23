@@ -82,16 +82,16 @@ class _EmailWidgetState extends State<EmailWidget> {
         statusBarIconBrightness: Brightness.dark,
         statusBarColor: greyBg,
       ),
-      child: Scaffold(
-        key: _scaffoldState,
-        drawer: ConstrainedBox(
-            constraints: const BoxConstraints(
-              maxWidth: 250,
-            ),
-            child: const DrawerWidget()),
-        backgroundColor: greyBg,
-        body: SafeArea(
-          child: Column(
+      child: SafeArea(
+        child: Scaffold(
+          key: _scaffoldState,
+          drawer: ConstrainedBox(
+              constraints: const BoxConstraints(
+                maxWidth: 250,
+              ),
+              child: const DrawerWidget()),
+          backgroundColor: greyBg,
+          body: Column(
             children: [
               Padding(
                 padding: const EdgeInsets.only(

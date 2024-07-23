@@ -36,11 +36,12 @@ class _SplashScreenState extends State<SplashScreen> {
     return AnnotatedRegion(
       value: const SystemUiOverlayStyle(
         statusBarBrightness: Brightness.light,
-        statusBarIconBrightness: Brightness.light,
+        statusBarIconBrightness: Brightness.dark,
         statusBarColor: whiteColor,
       ),
       child: SafeArea(
         child: Scaffold(
+          backgroundColor: whiteColor,
           body: Center(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
