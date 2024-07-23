@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:mail_app_responsive/responsive/responsive.dart';
 import 'package:mail_app_responsive/widgets/email_widget.dart';
 
 import '../constants/ui_constants.dart';
@@ -19,10 +20,11 @@ class _DetailsWidgetState extends State<DetailsWidget> {
     return AnnotatedRegion(
       value: const SystemUiOverlayStyle(
         statusBarBrightness: Brightness.light,
-        statusBarIconBrightness: Brightness.light,
-        statusBarColor: blackColor,
+        statusBarIconBrightness: Brightness.dark,
+        statusBarColor: whiteColor,
       ),
       child: Scaffold(
+        backgroundColor: whiteColor,
         body: SafeArea(
           child: Stack(
             children: [
@@ -63,15 +65,18 @@ class _DetailsWidgetState extends State<DetailsWidget> {
                       padding:
                           const EdgeInsets.symmetric(horizontal: padding20),
                       child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          IconButton(
-                              onPressed: () {},
-                              icon: const Icon(
-                                Icons.arrow_back,
-                                color: greyDarkColor,
-                                size: padding20,
-                              )),
-                          const Spacer(),
+                          if (Responsive.isMobile(context))
+                            IconButton(
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                                icon: const Icon(
+                                  Icons.arrow_back,
+                                  color: greyDarkColor,
+                                  size: padding20,
+                                )),
                           IconButton(
                               onPressed: () {},
                               icon: const Icon(
@@ -79,13 +84,13 @@ class _DetailsWidgetState extends State<DetailsWidget> {
                                 color: greyDarkColor,
                                 size: padding20,
                               )),
-                          IconButton(
+                          /*IconButton(
                               onPressed: () {},
                               icon: const Icon(
                                 Icons.warning_sharp,
                                 color: greyDarkColor,
                                 size: padding20,
-                              )),
+                              )),*/
                           IconButton(
                               onPressed: () {},
                               icon: const Icon(
@@ -93,7 +98,7 @@ class _DetailsWidgetState extends State<DetailsWidget> {
                                 color: greyDarkColor,
                                 size: padding20,
                               )),
-                          const Spacer(),
+                          /*const Spacer(),
                           IconButton(
                               onPressed: () {},
                               icon: const Icon(
@@ -114,15 +119,15 @@ class _DetailsWidgetState extends State<DetailsWidget> {
                                 Icons.check_circle,
                                 color: greyDarkColor,
                                 size: padding20,
-                              )),
-                          const Spacer(),
+                              )),*/
+                          /*const Spacer(),
                           IconButton(
                               onPressed: () {},
                               icon: const Icon(
                                 Icons.drive_folder_upload_rounded,
                                 color: greyDarkColor,
                                 size: padding20,
-                              )),
+                              )),*/
                           IconButton(
                               onPressed: () {},
                               icon: const Icon(
@@ -130,13 +135,14 @@ class _DetailsWidgetState extends State<DetailsWidget> {
                                 color: greyDarkColor,
                                 size: padding20,
                               )),
-                          IconButton(
-                              onPressed: () {},
-                              icon: const Icon(
-                                Icons.menu,
-                                color: greyDarkColor,
-                                size: padding20,
-                              )),
+                          if (!Responsive.isMobile(context))
+                            IconButton(
+                                onPressed: () {},
+                                icon: const Icon(
+                                  Icons.menu,
+                                  color: greyDarkColor,
+                                  size: padding20,
+                                )),
                           const Spacer(),
                           Row(
                             children: [
@@ -157,7 +163,6 @@ class _DetailsWidgetState extends State<DetailsWidget> {
                               ),
                             ],
                           ),
-                          const Spacer(),
                           IconButton(
                               onPressed: () {},
                               icon: const Icon(Icons.keyboard_arrow_left,
@@ -173,78 +178,81 @@ class _DetailsWidgetState extends State<DetailsWidget> {
                   ],
                 ),
               ),
-               Positioned(
-                 right: 50,
+              Positioned(
+                  right: 50,
                   bottom: 10,
                   child: Row(
-                children: [
-                  Container(
-                    height: 40,
-                    width: 40,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(padding12),
-                      color: whiteColor,
-                      boxShadow: const [
-                        BoxShadow(
-                          color: greyDarkColor,
-                          blurRadius: 4.0,
-                          offset: Offset(2, 2), // changes position of shadow
-                          spreadRadius: 1.0, // adds more depth
+                    children: [
+                      Container(
+                        height: 40,
+                        width: 40,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(padding12),
+                          color: whiteColor,
+                          boxShadow: const [
+                            BoxShadow(
+                              color: greyDarkColor,
+                              blurRadius: 4.0,
+                              offset: Offset(2, 2),
+                              // changes position of shadow
+                              spreadRadius: 1.0, // adds more depth
+                            ),
+                          ],
                         ),
-                      ],
-                    ),
-                    child: const Icon(
-                      Icons.star,
-                      color: greyDarkColor,
-                      size: padding20,
-                    ),
-                  ),
-                  widthBox(padding10),
-                  Container(
-                    height: 40,
-                    width: 40,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(padding12),
-                      color: whiteColor,
-                      boxShadow: const [
-                        BoxShadow(
+                        child: const Icon(
+                          Icons.star,
                           color: greyDarkColor,
-                          blurRadius: 4.0,
-                          offset: Offset(2, 2), // changes position of shadow
-                          spreadRadius: 1.0, // adds more depth
+                          size: padding20,
                         ),
-                      ],
-                    ),
-                    child: const Icon(
-                      Icons.share,
-                      color: greyDarkColor,
-                      size: padding20,
-                    ),
-                  ),
-                  widthBox(padding10),
-                  Container(
-                    height: 40,
-                    width: 40,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(padding12),
-                      color: whiteColor,
-                      boxShadow: const [
-                        BoxShadow(
+                      ),
+                      widthBox(padding10),
+                      Container(
+                        height: 40,
+                        width: 40,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(padding12),
+                          color: whiteColor,
+                          boxShadow: const [
+                            BoxShadow(
+                              color: greyDarkColor,
+                              blurRadius: 4.0,
+                              offset: Offset(2, 2),
+                              // changes position of shadow
+                              spreadRadius: 1.0, // adds more depth
+                            ),
+                          ],
+                        ),
+                        child: const Icon(
+                          Icons.share,
                           color: greyDarkColor,
-                          blurRadius: 4.0,
-                          offset: Offset(2, 2), // changes position of shadow
-                          spreadRadius: 1.0, // adds more depth
+                          size: padding20,
                         ),
-                      ],
-                    ),
-                    child: const Icon(
-                      Icons.bookmark_sharp ,
-                      color: greyDarkColor,
-                      size: padding20,
-                    ),
-                  )
-                ],
-              )),
+                      ),
+                      widthBox(padding10),
+                      Container(
+                        height: 40,
+                        width: 40,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(padding12),
+                          color: whiteColor,
+                          boxShadow: const [
+                            BoxShadow(
+                              color: greyDarkColor,
+                              blurRadius: 4.0,
+                              offset: Offset(2, 2),
+                              // changes position of shadow
+                              spreadRadius: 1.0, // adds more depth
+                            ),
+                          ],
+                        ),
+                        child: const Icon(
+                          Icons.bookmark_sharp,
+                          color: greyDarkColor,
+                          size: padding20,
+                        ),
+                      )
+                    ],
+                  )),
             ],
           ),
         ),

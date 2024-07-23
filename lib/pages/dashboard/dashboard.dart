@@ -204,10 +204,10 @@ class _DashboardState extends State<Dashboard> {
   }
 }*/
 
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:mail_app_responsive/responsive/responsive.dart';
 import 'package:mail_app_responsive/widgets/details_widget.dart';
 import 'package:mail_app_responsive/widgets/drawer_widget.dart';
 import 'package:mail_app_responsive/widgets/email_widget.dart';
@@ -216,6 +216,7 @@ import '../../constants/ui_constants.dart';
 
 class Dashboard extends StatefulWidget {
   static const String rootName = 'dashboard';
+
   const Dashboard({super.key});
 
   @override
@@ -233,7 +234,23 @@ class _DashboardState extends State<Dashboard> {
       ),
       child: SafeArea(
         child: Scaffold(
-          body: Row(
+            body: Responsive(
+          mobile: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Expanded(child: EmailWidget()),
+            ],
+          ),
+          tablet: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Expanded(flex: 6, child: EmailWidget()),
+              Expanded(flex: 9, child: DetailsWidget()),
+            ],
+          ),
+          desktop: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -242,7 +259,7 @@ class _DashboardState extends State<Dashboard> {
               Expanded(flex: 5, child: DetailsWidget()),
             ],
           ),
-        ),
+        )),
       ),
     );
   }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:mail_app_responsive/pages/dashboard/dashboard_models/email_group_dashboard.dart';
+import 'package:mail_app_responsive/responsive/responsive.dart';
 import '../constants/ui_constants.dart';
 import '../pages/dashboard/dashboard_models/email_model_dashboard.dart';
 
@@ -39,7 +40,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
         value: const SystemUiOverlayStyle(
           statusBarBrightness: Brightness.light,
           statusBarIconBrightness: Brightness.light,
-          statusBarColor: blackColor,
+          statusBarColor: whiteColor,
         ),
         child: Scaffold(
           backgroundColor: whiteColor,
@@ -50,22 +51,33 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    ElevatedButton(
-                      onPressed: () {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(content: Text('New Message')));
-                      },
-                      style: ElevatedButton.styleFrom(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12),
+                    Row(
+                      children: [
+                        Image.asset('assets/icons/ic_mail.png', height: 35, width: 35),
+                        const Spacer(),
+                        if (!Responsive.isDesktop(context)) const CloseButton(),
+                      ],
+                    ),
+                    heightBox(padding20),
+                    SizedBox(
+                      width: double.infinity,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(content: Text('New Message')));
+                        },
+                        style: ElevatedButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          backgroundColor: Colors.pink,
                         ),
-                        backgroundColor: Colors.pink,
-                      ),
-                      child: const Padding(
-                        padding: EdgeInsets.all(padding8),
-                        child: Text(
-                          'New Message',
-                          style: TextStyle(color: Colors.white, fontSize: 14),
+                        child: const Padding(
+                          padding: EdgeInsets.all(padding8),
+                          child: Text(
+                            'New Message',
+                            style: TextStyle(color: Colors.white, fontSize: 14),
+                          ),
                         ),
                       ),
                     ),
@@ -108,15 +120,18 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                   });
                 },
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Icon(
                       containList[index].icon,
                       color: isSelected ? blackColor : greyColor,
                     ),
                     widthBox(padding12),
-                    Text(
-                      containList[index].title,
-                      style: kCustomTextStyle(isSelected ? blackColor : greyColor, padding14, false),
+                    Expanded(
+                      child: Text(
+                        containList[index].title,
+                        style: kCustomTextStyle(isSelected ? blackColor : greyColor, padding14, false),
+                      ),
                     ),
                   ],
                 ),
@@ -154,6 +169,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                   });
                 },
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Image.asset(
                       emailGroupsContents[index].imageUrl,
@@ -161,9 +177,11 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                       width: 20,
                     ),
                     widthBox(padding12),
-                    Text(
-                      emailGroupsContents[index].title,
-                      style: kCustomTextStyle(isSelected ? blackColor : greyColor, padding14, false),
+                    Expanded(
+                      child: Text(
+                        emailGroupsContents[index].title,
+                        style: kCustomTextStyle(isSelected ? blackColor : greyColor, padding14, false),
+                      ),
                     ),
                   ],
                 ),

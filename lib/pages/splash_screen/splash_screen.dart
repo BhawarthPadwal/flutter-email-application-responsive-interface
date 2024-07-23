@@ -37,7 +37,7 @@ class _SplashScreenState extends State<SplashScreen> {
       value: const SystemUiOverlayStyle(
         statusBarBrightness: Brightness.light,
         statusBarIconBrightness: Brightness.light,
-        statusBarColor: blackColor,
+        statusBarColor: whiteColor,
       ),
       child: SafeArea(
         child: Scaffold(
